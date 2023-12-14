@@ -1,13 +1,23 @@
 
 function customRender(realWorld, container) {
+    // const stickToThePage = document.createElement(realWorld.type)
+    // stickToThePage.innerHTML = realWorld.childern
+    // stickToThePage.setAttribute('href', realWorld.props.href)
+    // stickToThePage.setAttribute('target', realWorld.props.target)
+
+    // container.appendChild(stickToThePage)
+
     const stickToThePage = document.createElement(realWorld.type)
     stickToThePage.innerHTML = realWorld.childern
-    stickToThePage.setAttribute('href', realWorld.props.href)
-    stickToThePage.setAttribute('target', realWorld.props.target)
+    for (const prop in realWorld.props) {
+        if (prop === 'childern') continue; {
 
-    container.appendChild(stickToThePage)
+            stickToThePage.setAttribute(prop, realWorld.props[prop])
+        }
+        container.appendChild(stickToThePage)
+    }
 
-    
+
 }
 
 

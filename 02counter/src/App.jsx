@@ -3,23 +3,16 @@ import './App.css'
 
 function App() {
 
-  let [counter, setCounter] = useState(0)
+  let [counter, setCounter] = useState(20)
   const addValue = () => {
-    setCounter((p) => 
-   p >= 20 ? p * 0 : p + 1
-
-   );
-   
+    setCounter((p) =>
+      p >= 20 ? p * 0 : p + 1
+    );
   }
   const removeValue = () => {
-    setCounter((p) => 
-   p <= 0 ? p * 0 : p - 1
-
-   );
-  
-
-  
-    
+    setCounter((p) =>
+      p <= 0 ? p * 0 : p - 1
+    );
   }
 
 

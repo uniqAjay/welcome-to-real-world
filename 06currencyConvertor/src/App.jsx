@@ -26,6 +26,7 @@ function App() {
 
     setConvertedAmount(amount * currencyInfo[to])
 
+
   }
 
 

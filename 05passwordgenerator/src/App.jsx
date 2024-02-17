@@ -7,6 +7,7 @@ function App() {
   const [charAllowed, setCharAllowed] = useState(false)
   const [password, setpassword] = useState("")
 
+  // used for creating reference
   const passwordRef = useRef(null)
   const passwordGenerator = useCallback(() => {
 
@@ -38,6 +39,7 @@ function App() {
   const copyPasswordToClipBoard = useCallback(() => {
 
     passwordRef.current?.select();
+    // for storing pass into clipboard
     window.navigator.clipboard.writeText(password)
 
   },[password]) 
@@ -49,7 +51,7 @@ function App() {
 
   return (
     <>
-      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
+      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500 mt-40">
         <h1 className='text-white text-center my-3'>Password generator</h1>
         <div className="flex shadow rounded-lg overflow-hidden mb-4">
           <input

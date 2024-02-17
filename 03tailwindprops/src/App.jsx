@@ -5,11 +5,11 @@ import './App.css'
 import Card from './components/Card'
 function App() {
 
-  let myObj = {
-    username: "hitesh",
-    age: 21
-  }
-  let newArr = [1, 2, 3]
+  // let myObj = {
+  //   username: "Ajay",
+  //   age: 24
+  // }
+  // let newArr = [1, 2, 3]
 
   return (
     <>

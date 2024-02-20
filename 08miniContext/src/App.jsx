@@ -6,7 +6,6 @@ import UserContextProvider from './context/UserContextProvider'
 
 function App() {
 
-
   return (
     <UserContextProvider>
     <h1>Welcome To The Real World With React</h1>

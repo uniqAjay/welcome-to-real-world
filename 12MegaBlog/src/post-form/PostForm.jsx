@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Button, RTE, Select, Input } from "../components/index";
+import { Button, RTE, Select, Input } from "../components/";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import appwriteService from "../appwrite/config";
@@ -9,16 +10,18 @@ function PostForm({ post }) {
   const { register, handleSubmit, watch, control, setValue,getValues } = useForm({
     defaultValues: {
       title: post?.title || "",
-      slug: post?.slug || "",
+      slug: post?.$id || "",
       content: post?.content || "",
       status: post?.status || "",
     },
+  
   });
 
   const navigate = useNavigate();
   const userData  = useSelector((state) => state.auth.userData);
+
   const submit = async (data) => {
-    if (data) {
+    if (post) {
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
         : null;
@@ -29,23 +32,19 @@ function PostForm({ post }) {
 
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
-        featuredImage: file ? file.id : undefined,
+        featuredImage: file ? file.$id : undefined,
       });
       if (dbPost) {
         navigate(`/post/${post.$id}`);
       }
     } else {
-      const file = data.image[0]
-        ? await appwriteService.uploadFile(data.image)
-        : null;
+      const file = data.image[0]? await appwriteService.uploadFile(data.image[0]): null;
+
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
-        const dbPost = await appwriteService.createPost({
-          ...data,
-          userId: userData.$id,
-        });
-
+        const userId = userData.$id
+        const dbPost = await appwriteService.createPost( {...data, userID: userData.$id} )
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
         }
@@ -136,7 +135,7 @@ function PostForm({ post }) {
         </Button>
       </div>
     </form>
-  );
+  )
 }
 
 export default PostForm;

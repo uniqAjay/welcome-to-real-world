@@ -12,7 +12,7 @@ function Login() {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
 
-  const login = async (data) => {
+  const login = async(data) => {
     setError("");
     try {
       const session = await authService.login(data);
@@ -51,7 +51,7 @@ function Login() {
         </p>
           {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
        
-        <form className="mt-8" onSubmit={handleSubmit(login)}>
+        <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
             <Input
               label="Email: "
@@ -70,7 +70,7 @@ function Login() {
               label="Password"
               placeholder="Enter Your Password"
               type="Password"
-              {...register("Password", {
+              {...register("password", {
                 required: true,
               })}
             />

@@ -12,13 +12,13 @@ function Signup() {
   const [error, setError] = useState("");
   const { register, handleSubmit } = useForm();
 
-  const create = async (data) => {
+  const create = async(data) => {
     setError("")
     try {
       const userData = await authService.createAccount(data)
       if (userData) {
         const userData = await authService.getCurrentUser();
-        if (userData) dispatch(login(userData));
+        if (userData) dispatch(login(userData))
         navigate("/");
       }
     } catch (error) {
@@ -70,10 +70,10 @@ function Signup() {
               })}
             />
             <Input
-              label="Password: "
-              placeholder="Enter Your Password"
+              label="Password:"
               type="Password"
-              {...register("Password", {
+              placeholder="Enter Your Password"
+              {...register("password", {
                 required: true,
               })}
             />
